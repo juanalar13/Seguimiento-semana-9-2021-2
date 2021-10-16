@@ -24,8 +24,12 @@ public class Registro {
 		return Conteo;
 	}
 	
-	public void setTestDia(int dia) {
-		testDia = dia;
+	public void setDiaPar() {
+		testDia = 2;
+	}
+	
+	public void setDiaImpar() {
+		testDia = 1;
 	}
 
 	public boolean IngresarPersona(String id_tipo, int id_numero) {

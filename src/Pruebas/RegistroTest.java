@@ -10,39 +10,45 @@ class RegistroTest extends TestCase {
 	
 	Registro R;
 	
-	void SetupEscenario1() {
+	
+	void SetupEscenario() {
 		R = new Registro();	
-	}
+	}	
 	
 	
 	@Test
 	void IngresarPersonaTest() {
-		SetupEscenario1();
 		//Casos donde se registran correctamente
-		R.setTestDia(1);
+		SetupEscenario();
+		R.setDiaImpar();
 		assertTrue(R.IngresarPersona("CC", 1121));
 		assertTrue(R.IngresarPersona("PP", 1121));
 		assertTrue(R.IngresarPersona("CE", 1121));		
-		R.setTestDia(2);
+		R.setDiaPar();
 		assertTrue(R.IngresarPersona("CC", 1131));
 		assertTrue(R.IngresarPersona("PP", 1131));
 		assertTrue(R.IngresarPersona("CE", 1131));
+		assertEquals(R.getConteo(), 6);
 		
 		//Casos donde no se registran correctamente
-		R.setTestDia(1);
+		SetupEscenario();
+		R.setDiaImpar();
 		assertFalse(R.IngresarPersona("CC", 1131));
 		assertFalse(R.IngresarPersona("PP", 1131));
 		assertFalse(R.IngresarPersona("CE", 1131));		
-		R.setTestDia(2);
+		R.setDiaPar();;
 		assertFalse(R.IngresarPersona("CC", 1121));
 		assertFalse(R.IngresarPersona("PP", 1121));
 		assertFalse(R.IngresarPersona("CE", 1121));
+		assertEquals(R.getConteo(), 6);
 		
 		//Casos donde no se registran correctamente por ser menor de edad
-		R.setTestDia(1);
+		SetupEscenario();
+		R.setDiaImpar();
 		assertFalse(R.IngresarPersona("TI", 1121));
-		R.setTestDia(2);
-		assertFalse(R.IngresarPersona("TI", 1131));		
+		R.setDiaPar();
+		assertFalse(R.IngresarPersona("TI", 1131));
+		assertEquals(R.getConteo(), 2);
 
 	}
 
